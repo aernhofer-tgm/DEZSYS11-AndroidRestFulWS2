@@ -1,4 +1,4 @@
-package at.ernhofer.dezsys10_androidrestfulws.app;
+package at.ernhofer.dezsys11_androidrestfulws;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
