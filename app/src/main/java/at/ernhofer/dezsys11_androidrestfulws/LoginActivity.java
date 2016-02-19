@@ -30,6 +30,10 @@ public class LoginActivity extends Activity {
     EditText emailET;
     // Passwprd Edit View Object
     EditText pwdET;
+    //
+    String ip,rootpath;
+    int port;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,11 @@ public class LoginActivity extends Activity {
         prgDialog.setMessage("Please wait...");
         // Set Cancelable as False
         prgDialog.setCancelable(false);
+        //
+        Constants c = new Constants();
+        this.ip = c.ip;
+        this.port = c.port;
+        this.rootpath = c.rootpath;
     }
 
     /**
@@ -91,7 +100,7 @@ public class LoginActivity extends Activity {
         prgDialog.show();
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://192.168.2.2:9999/useraccount/login/dologin",params ,new TextHttpResponseHandler() {
+        client.get("http://" + ip + ":" + port + "/" + rootpath+ "/login/dologin",params ,new TextHttpResponseHandler() {
             // When the response returned by REST has Http response code other than '200'
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {

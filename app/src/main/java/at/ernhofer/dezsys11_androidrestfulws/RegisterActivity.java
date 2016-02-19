@@ -31,6 +31,10 @@ public class RegisterActivity extends Activity {
     EditText emailET;
     // Passwprd Edit View Object
     EditText pwdET;
+
+    String ip,rootpath;
+    int port;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,11 @@ public class RegisterActivity extends Activity {
         prgDialog.setMessage("Please wait...");
         // Set Cancelable as False
         prgDialog.setCancelable(false);
+        //
+        Constants c = new Constants();
+        this.ip = c.ip;
+        this.port = c.port;
+        this.rootpath = c.rootpath;
     }
 
     /**
@@ -68,7 +77,9 @@ public class RegisterActivity extends Activity {
         // When Name Edit View, Email Edit View and Password Edit View have values other than Null
         if(Utility.isNotNull(name) && Utility.isNotNull(email) && Utility.isNotNull(password)){
             // When Email entered is Valid
-            if(Utility.validate(email)){
+            //TODO:Emailueberpruefung einbinden
+            //if(Utility.validate(email)){
+            if(true){
                 // Put Http parameter name with value of Name Edit View control
                 params.put("name", name);
                 // Put Http parameter username with value of Email Edit View control
@@ -100,7 +111,7 @@ public class RegisterActivity extends Activity {
         prgDialog.show();
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://192.168.2.2:9999/useraccount/register/doregister",params ,new TextHttpResponseHandler() {
+        client.get("http://" + ip + ":" + port + "/" + rootpath+ "/register/doregister",params ,new TextHttpResponseHandler() {
 
             // When the response returned by REST has Http response code other than '200'
             @Override
