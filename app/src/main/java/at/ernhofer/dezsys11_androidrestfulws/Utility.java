@@ -21,9 +21,37 @@ public class Utility {
      * @return true for Valid Email and false for Invalid Email
      */
     public static boolean validate(String email) {
-        pattern = Pattern.compile(EMAIL_PATTERN);
-        matcher = pattern.matcher(email);
-        return matcher.matches();
+        //pattern = Pattern.compile(EMAIL_PATTERN);
+        //matcher = pattern.matcher(email);
+
+        boolean retValue = true;
+
+        int i = email.indexOf("@");
+        int j = email.indexOf(".", i);
+
+        if (i == 0)  // Anzahl der Zeichen vor dem @
+        {
+            retValue = false;
+        }
+
+        if (j == -1)  // Prüft ob kein Punkt nach dem @ Zeichen kommt
+        {
+            retValue = false;
+        }
+
+        if ((j - i) < 2)  // Prüft Anzahl der Zeichen zwischen dem @ und dem .
+        {
+            retValue = false;
+        }
+
+        if (j == (email.length() -1))  // Mail Adresse muss länger sein, als die Stelle vom Punkt
+        {
+            retValue = false;
+        }
+
+        return retValue;
+
+        //return matcher.matches();
 
     }
     /**

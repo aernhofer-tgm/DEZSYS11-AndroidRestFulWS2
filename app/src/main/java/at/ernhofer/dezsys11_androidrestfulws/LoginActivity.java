@@ -72,9 +72,7 @@ public class LoginActivity extends Activity {
         // When Email Edit View and Password Edit View have values other than Null
         if(Utility.isNotNull(email) && Utility.isNotNull(password)){
             // When Email entered is Valid
-            //if(Utility.validate(email)){
-            //TODO:Email ueberpruefen
-            if(true){
+            if(Utility.validate(email)){
                 // Put Http parameter username with value of Email Edit View control
                 params.put("username", email);
                 // Put Http parameter password with value of Password Edit Value control

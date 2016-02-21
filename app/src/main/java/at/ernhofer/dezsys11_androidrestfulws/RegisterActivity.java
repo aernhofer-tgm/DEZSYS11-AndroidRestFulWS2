@@ -77,9 +77,7 @@ public class RegisterActivity extends Activity {
         // When Name Edit View, Email Edit View and Password Edit View have values other than Null
         if(Utility.isNotNull(name) && Utility.isNotNull(email) && Utility.isNotNull(password)){
             // When Email entered is Valid
-            //TODO:Emailueberpruefung einbinden
-            //if(Utility.validate(email)){
-            if(true){
+            if(Utility.validate(email)){
                 // Put Http parameter name with value of Name Edit View control
                 params.put("name", name);
                 // Put Http parameter username with value of Email Edit View control
@@ -154,7 +152,6 @@ public class RegisterActivity extends Activity {
                         Toast.makeText(getApplicationContext(), obj.getString("error_msg"), Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
-                    // TODO Auto-generated catch block
                     Toast.makeText(getApplicationContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
 
